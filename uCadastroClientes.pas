@@ -1,0 +1,143 @@
+unit uCadastroClientes;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Buttons;
+
+type
+  TfrmCadastroClientes = class(TForm)
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    cbTipoCliente: TComboBox;
+    edLogin: TEdit;
+    edCliente: TEdit;
+    btNovoRegistro: TBitBtn;
+    btGravar: TBitBtn;
+    btVoltar: TBitBtn;
+    procedure btVoltarClick(Sender: TObject);
+    procedure btNovoRegistroClick(Sender: TObject);
+    procedure btGravarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    function f_LiberarBotoes(Novo, Gravar, Voltar : Boolean):Boolean;
+    function f_LiberarDados(TipoCliente, Login, NomeCliente : Boolean):Boolean;
+    function f_getCarregarDados():boolean;
+    function f_LimparCampos():Boolean;
+  end;
+
+var
+  frmCadastroClientes: TfrmCadastroClientes;
+
+implementation
+  uses uDmDados, DB;
+  
+{$R *.dfm}
+
+procedure TfrmCadastroClientes.btVoltarClick(Sender: TObject);
+begin
+  Close;
+end;
+
+function TfrmCadastroClientes.f_LiberarBotoes(Novo, Gravar,
+  Voltar: Boolean): Boolean;
+begin
+  btNovoRegistro.Enabled  :=  Novo;
+  btGravar.Enabled        :=  Gravar;
+  btVoltar.Enabled        :=  Voltar;
+end;
+
+function TfrmCadastroClientes.f_LiberarDados(TipoCliente, Login,
+  NomeCliente: Boolean): Boolean;
+begin
+  cbTipoCliente.Enabled :=  TipoCliente;
+  edLogin.Enabled       :=  Login;
+  edCliente.Enabled     :=  NomeCliente;
+end;
+
+function TfrmCadastroClientes.f_getCarregarDados: boolean;
+var
+  qSql  : String;
+  Status  : String;
+begin
+  Status  :=  'A';
+  qSql    :=  '';
+  qSql    :=  'select * from CLIENTES_TIPO where STATUS = '+QuotedStr(Status);
+  dmDados.dsCarregarDados.CommandText :=  '';
+  dmDados.dsCarregarDados.CommandText :=  qSql;
+  dmDados.dsCarregarDados.Open;
+  dmDados.dsCarregarDados.First;
+  while not dmDados.dsCarregarDados.Eof do
+    begin
+      cbTipoCliente.Items.Add(dmDados.dsCarregarDados.FieldByName('DESCRICAO').AsString);
+      dmDados.dsCarregarDados.Next
+    end;
+  dmDados.dsCarregarDados.Close;  
+end;
+
+procedure TfrmCadastroClientes.btNovoRegistroClick(Sender: TObject);
+begin
+  f_LimparCampos();
+  f_getCarregarDados();
+  f_LiberarBotoes(False, True,True);
+  f_LiberarDados(True, True, True);
+end;
+
+function TfrmCadastroClientes.f_LimparCampos: Boolean;
+begin
+  cbTipoCliente.Clear;
+  edLogin.Clear;
+  edCliente.Clear
+end;
+
+procedure TfrmCadastroClientes.btGravarClick(Sender: TObject);
+var
+  qSql                      : String;
+  Status                    : String;
+  LoginCliente, NomeCliente : String;
+  TipoCliente               : Integer;
+begin
+  qSql  :=  '';
+  qSql  :=  'select * from CLIENTES_TIPO where DESCRICAO = '+QuotedStr(UpperCase(cbTipoCliente.Text));
+  dmDados.dsGetDados.CommandText  :=  '';
+  dmDados.dsGetDados.CommandText  :=  qSql;
+  dmDados.dsGetDados.Open;
+  TipoCliente :=  dmDados.dsGetDados.FieldByName('ID').AsInteger;
+  dmDados.dsGetDados.Close;
+  Status  :=  'A';
+  LoginCliente  :=  UpperCase(edLogin.Text);
+  NomeCliente   :=  UpperCase(edCliente.Text);
+
+  qSql  :=  '';
+  qSql  :=  'insert into CLIENTES (FK_CLIENTES_TIPO, LOGIN, NOMECLIENTE, STATUS) ';
+  qSql  :=  qSql  + 'values ('+IntToStr(TipoCliente)+', '+QuotedStr(LoginCliente)+', '+QuotedStr(NomeCliente)+', '+QuotedStr(Status)+')';
+
+  dmDados.dsInsertDados.CommandText :=  '';
+  dmDados.dsInsertDados.CommandText :=  qSql;
+
+  try
+    dmDados.dsInsertDados.ExecSQL;
+    MessageDlg('Dados Gravados Com Sucesso!!',mtInformation,[mbOk],0);
+    f_LimparCampos();
+    f_LiberarBotoes(True, False, True);
+    f_LiberarDados(False, False, False);
+  except
+    on E : Exception do
+      begin
+        MessageDlg(E.ClassName+' error raised, with message : '+E.Message,mtError,[mbOk],0);
+        MessageDlg('Erro ao Gravar os Dados!',mtError,[mbOk],0);
+      end;
+  end;
+
+  f_LimparCampos();
+  f_LiberarBotoes(True, False, True);
+  f_LiberarDados(False, False, False);
+end;
+
+end.

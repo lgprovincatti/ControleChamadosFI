@@ -1,0 +1,50 @@
+program FISistemasChamados;
+
+uses
+  Forms,
+  uAcesso in 'uAcesso.pas' {frmAcesso},
+  uDmDados in 'uDmDados.pas' {dmDados: TDataModule},
+  uPrincipal in 'uPrincipal.pas' {frmPrincipal},
+  uCadastroChamado in 'uCadastroChamado.pas' {frmCadastroKanban},
+  uCadastroClientes in 'uCadastroClientes.pas' {frmCadastroClientes},
+  uFiltroRelatorioFechamento in 'uFiltroRelatorioFechamento.pas' {frmFiltroRelatorioFechamento},
+  uRelCliFec in 'uRelCliFec.pas' {frmRelCliFec},
+  uRelatorioClientesParcial in 'uRelatorioClientesParcial.pas' {frmRelatorioClientesParcial},
+  uRelatorioParcialClientesForm in 'uRelatorioParcialClientesForm.pas' {frmRelatorioParcialClientes},
+  uRelatorioParcial_Horas in 'uRelatorioParcial_Horas.pas' {frmRelatorioParcial_Horas},
+  uRelatorioFechamentoNovo in 'uRelatorioFechamentoNovo.pas' {frmRelatorioNovoFechamento},
+  uNovoRelatorioFechamentoForm in 'uNovoRelatorioFechamentoForm.pas' {frmNovoRelatorioFechamentoForm},
+  uRelatorioControleChamadosFI_Periodo in 'uRelatorioControleChamadosFI_Periodo.pas' {frmRelatorioChamadosFI_Periodo},
+  uFiltroRelatorioPeriodo in 'uFiltroRelatorioPeriodo.pas' {frmRelatorioPeriodoFiltro},
+  uRelatorioAnual in 'uRelatorioAnual.pas' {frmRelatorioAnual},
+  uRelatorioOTRSAbertosGeral_Form in 'uRelatorioOTRSAbertosGeral_Form.pas' {frmRelatorioOTRSAbertosGeral_Form},
+  uFormRel_AbertosPorFila in 'uFormRel_AbertosPorFila.pas' {frmFormRel_AbertosPorFila},
+  uFormRel_QtdeAnalista in 'uFormRel_QtdeAnalista.pas' {frmRel_ChamadosAnalistaQtde},
+  uFormRel_QtdeAnalistaDet in 'uFormRel_QtdeAnalistaDet.pas' {frmFormRelQtdeChamadosAnalistasDet};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.Title := 'FI Sistemas - Chamados';
+  Application.CreateForm(TfrmAcesso, frmAcesso);
+  Application.CreateForm(TdmDados, dmDados);
+  Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TfrmCadastroKanban, frmCadastroKanban);
+  Application.CreateForm(TfrmCadastroClientes, frmCadastroClientes);
+  Application.CreateForm(TfrmFiltroRelatorioFechamento, frmFiltroRelatorioFechamento);
+  Application.CreateForm(TfrmRelCliFec, frmRelCliFec);
+  Application.CreateForm(TfrmRelatorioClientesParcial, frmRelatorioClientesParcial);
+  Application.CreateForm(TfrmRelatorioParcialClientes, frmRelatorioParcialClientes);
+  Application.CreateForm(TfrmRelatorioParcial_Horas, frmRelatorioParcial_Horas);
+  Application.CreateForm(TfrmRelatorioNovoFechamento, frmRelatorioNovoFechamento);
+  Application.CreateForm(TfrmNovoRelatorioFechamentoForm, frmNovoRelatorioFechamentoForm);
+  Application.CreateForm(TfrmRelatorioChamadosFI_Periodo, frmRelatorioChamadosFI_Periodo);
+  Application.CreateForm(TfrmRelatorioPeriodoFiltro, frmRelatorioPeriodoFiltro);
+  Application.CreateForm(TfrmRelatorioAnual, frmRelatorioAnual);
+  Application.CreateForm(TfrmRelatorioOTRSAbertosGeral_Form, frmRelatorioOTRSAbertosGeral_Form);
+  Application.CreateForm(TfrmFormRel_AbertosPorFila, frmFormRel_AbertosPorFila);
+  Application.CreateForm(TfrmRel_ChamadosAnalistaQtde, frmRel_ChamadosAnalistaQtde);
+  Application.CreateForm(TfrmFormRelQtdeChamadosAnalistasDet, frmFormRelQtdeChamadosAnalistasDet);
+  Application.Run;
+end.

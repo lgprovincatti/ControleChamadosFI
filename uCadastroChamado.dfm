@@ -1,0 +1,271 @@
+object frmCadastroKanban: TfrmCadastroKanban
+  Left = 202
+  Top = 285
+  Width = 697
+  Height = 223
+  BorderIcons = []
+  BorderStyle = bsSizeToolWin
+  BorderWidth = 10
+  Caption = 'FI Sistemas - Chamados [ Nova Task ]'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object GroupBox1: TGroupBox
+    Left = 0
+    Top = 0
+    Width = 502
+    Height = 165
+    Align = alClient
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 160
+      Top = 16
+      Width = 34
+      Height = 13
+      Caption = 'DATA'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 8
+      Top = 16
+      Width = 65
+      Height = 13
+      Caption = 'REGISTRO'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 8
+      Top = 64
+      Width = 53
+      Height = 13
+      Caption = 'CLIENTE'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 256
+      Top = 16
+      Width = 30
+      Height = 13
+      Caption = 'TIPO'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label6: TLabel
+      Left = 240
+      Top = 112
+      Width = 76
+      Height = 13
+      Caption = 'ATENDENTE'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label7: TLabel
+      Left = 160
+      Top = 112
+      Width = 44
+      Height = 13
+      Caption = 'TEMPO'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label8: TLabel
+      Left = 8
+      Top = 112
+      Width = 45
+      Height = 13
+      Caption = 'TICKET'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object cbTipoRegistro: TComboBox
+      Left = 8
+      Top = 32
+      Width = 145
+      Height = 22
+      Style = csOwnerDrawFixed
+      CharCase = ecUpperCase
+      Enabled = False
+      ItemHeight = 16
+      TabOrder = 0
+    end
+    object edData: TMaskEdit
+      Left = 160
+      Top = 32
+      Width = 88
+      Height = 21
+      CharCase = ecUpperCase
+      Enabled = False
+      EditMask = '!99/99/0000;1;_'
+      MaxLength = 10
+      TabOrder = 1
+      Text = '  /  /    '
+    end
+    object cbTipoChamado: TComboBox
+      Left = 256
+      Top = 32
+      Width = 233
+      Height = 22
+      Style = csOwnerDrawFixed
+      CharCase = ecUpperCase
+      Enabled = False
+      ItemHeight = 16
+      TabOrder = 2
+    end
+    object cbCliente: TComboBox
+      Left = 8
+      Top = 80
+      Width = 145
+      Height = 21
+      AutoDropDown = True
+      Style = csSimple
+      CharCase = ecUpperCase
+      Enabled = False
+      ItemHeight = 13
+      TabOrder = 3
+      OnExit = cbClienteExit
+    end
+    object edTicket: TEdit
+      Left = 8
+      Top = 128
+      Width = 145
+      Height = 21
+      CharCase = ecUpperCase
+      Enabled = False
+      MaxLength = 25
+      TabOrder = 4
+    end
+    object cbProgramador: TComboBox
+      Left = 240
+      Top = 128
+      Width = 249
+      Height = 22
+      Style = csOwnerDrawFixed
+      CharCase = ecUpperCase
+      Enabled = False
+      ItemHeight = 16
+      TabOrder = 6
+    end
+    object mDescricao: TMemo
+      Left = 8
+      Top = 192
+      Width = 481
+      Height = 25
+      Enabled = False
+      TabOrder = 7
+      Visible = False
+    end
+    object edTempo: TMaskEdit
+      Left = 160
+      Top = 128
+      Width = 72
+      Height = 21
+      CharCase = ecUpperCase
+      Enabled = False
+      EditMask = '!90:00;1;_'
+      MaxLength = 5
+      TabOrder = 5
+      Text = '  :  '
+    end
+    object edNomeCliente: TEdit
+      Left = 160
+      Top = 80
+      Width = 329
+      Height = 21
+      CharCase = ecUpperCase
+      Enabled = False
+      TabOrder = 8
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 502
+    Top = 0
+    Width = 159
+    Height = 165
+    Align = alRight
+    TabOrder = 1
+    object btNovoRegistro: TBitBtn
+      Left = 8
+      Top = 32
+      Width = 137
+      Height = 21
+      Caption = '&Novo Registro'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clNavy
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+      OnClick = btNovoRegistroClick
+    end
+    object btGravar: TBitBtn
+      Left = 8
+      Top = 72
+      Width = 137
+      Height = 21
+      Caption = '&Gravar Dados'
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clNavy
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 1
+      OnClick = btGravarClick
+    end
+    object btVoltar: TBitBtn
+      Left = 8
+      Top = 128
+      Width = 137
+      Height = 21
+      Caption = '&Voltar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clNavy
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 2
+      OnClick = btVoltarClick
+    end
+  end
+end
